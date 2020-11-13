@@ -1,14 +1,12 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import LineChart from "./components/engagement-line";
-import DoughnutChart from "./components/engagement-doughnut";
+import Dashboard from "./components/dashboard";
 
 function App() {
   return (
     <div className="App">
-      <LineChart></LineChart>
-      <DoughnutChart></DoughnutChart>
+      <Dashboard></Dashboard>
     </div>
   );
 }

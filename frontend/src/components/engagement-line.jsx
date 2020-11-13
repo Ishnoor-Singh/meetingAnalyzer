@@ -9,13 +9,16 @@ const data = {
       label: SampleData.name,
       data: SampleData.data,
       fill: false,
-      backgroundColor: "rgb(64, 114, 238)",
-      borderColor: "rgba(64, 114, 238, 0.8)",
+      backgroundColor: "#4072EE",
+      borderColor: "#4072EE",
     },
   ],
 };
 
 const options = {
+  legend: {
+    display: false,
+  },
   scales: {
     yAxes: [
       {
@@ -30,7 +33,7 @@ const options = {
 const LineChart = () => (
   <>
     <div className="header">
-      <h1 className="title">Line Chart</h1>
+      <h1 className="title">Engagement</h1>
     </div>
     <Line data={data} options={options} />
   </>
