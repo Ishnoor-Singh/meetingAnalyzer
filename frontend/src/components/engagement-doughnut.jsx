@@ -9,6 +9,23 @@ for (var i = 0; i < SampleData.data.length; i++) {
 var engagementScore = Math.round(total / SampleData.data.length);
 var unengagedScore = 100 - engagementScore;
 
+var engagementMessage = "";
+if( engagementScore >= 80) {
+  engagementMessage = "Strong engagement"
+}
+else if( engagementScore >= 60) {
+  engagementMessage = "Decent engagement"
+}
+else if( engagementScore >= 40) {
+  engagementMessage = "Mediocre engagement"
+}
+else if( engagementScore >= 20) {
+  engagementMessage = "Low engagement"
+}
+else {
+  engagementMessage = "Little engagement"
+}
+
 const data = {
   labels: ["Engaged", "Not Engaged"],
   datasets: [
@@ -34,10 +51,7 @@ const DoughnutChart = () => (
     <Doughnut data={data} options={options} />
     <div>
       <h2>Score: {engagementScore}</h2>
-      <p>
-        The above chart summarizes how engaged participants were throughout the
-        meeting
-      </p>
+      <h2>{engagementMessage}</h2>
     </div>
   </>
 );
