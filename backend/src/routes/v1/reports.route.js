@@ -8,8 +8,6 @@ const reportController = require('../../controllers/report.controller');
 const router = express.Router();
 
 
-connectDB()
-
 router
   .route('/upload')
   .post(reportController.addReport)
