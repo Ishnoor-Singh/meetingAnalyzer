@@ -12,15 +12,6 @@ const reportSchema = new mongoose.Schema({
 // class is returned from .model
 const Report = mongoose.model('Report', reportSchema);
 
-const connectDB = async () => {
-  mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true});
-  const db = mongoose.connection;
-  db.on('error', console.error.bind(console, 'connection error:'));
-  db.once('open', function() {
-    // we're connected!
-  });
-}
-
 const addReport = async (reportJson) => {
   report = new Report({name: reportJson.name, labels: reportJson.labels, data: reportJson.data})
   report.save(function (err, _) {
@@ -38,7 +29,8 @@ const searchReport = async (reportId) => {
 
 
 module.exports = {
-  connectDB,
+  // connectDB,
   addReport, 
   searchReport,
 };
+
