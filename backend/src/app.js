@@ -38,6 +38,8 @@ app.use(mongoSanitize());
 // gzip compression
 app.use(compression());
 
+console.log(config)
+
 // enable cors
 app.use(cors());
 app.options('*', cors());
@@ -53,6 +55,7 @@ if (config.env === 'production') {
 
 // Accept json arguments in post body
 app.use(bodyParser.json())
+app.use(bodyParser.raw())
 
 // v1 api routes
 app.use('/v1', routes);

@@ -1,19 +1,19 @@
 const httpStatus = require('http-status');
 const catchAsync = require('../utils/catchAsync');
-const {db} = require('../services');
+const { dbService } = require('../services');
 
 const addReport = catchAsync(async (req, res) => {
   // body must include 
-  console.log("body is ")
-  console.log(req.body)
-  res.send(httpStatus.status.ok())
-  await db.addReport(req.body.report);
+  // res.status(httpStatus.NO_CONTENT).send();
+  const id = await dbService.addReport(req.body);
+  res.send(id)
 });
 
 const searchReport = catchAsync(async (req, res) => {
   // body must include 
-  res.send(httpStatus.status.ok())
-  await db.searchReport(req.params.reportId);
+  // res.status(httpStatus.NO_CONTENT).send();
+  const report = await dbService.searchReport(req.params.reportId);
+  res.send(report)
 });
 
 module.exports = {
