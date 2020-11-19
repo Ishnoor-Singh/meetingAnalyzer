@@ -14,22 +14,16 @@ const Report = mongoose.model('Report', reportSchema);
 
 const addReport = async (reportJson) => {
   report = new Report({name: reportJson.name, labels: reportJson.labels, data: reportJson.data})
-  report.save(function (err, _) {
-    if (err) return console.error(err);
-  });
+  let reportDoc = await report.save()
+  return reportDoc._id;
 }
 
 const searchReport = async (reportId) => {
-  await Report.findById(reportId)
-    .exec(function (dbErr,modelReport) {
-      if (dbErr) return console.error(dbErr)
-      return res.send(modelReport.toJSON(),200)
-    })
+  return await Report.findById(reportId);
 }
 
 
 module.exports = {
-  // connectDB,
   addReport, 
   searchReport,
 };
