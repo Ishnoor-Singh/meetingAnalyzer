@@ -4,14 +4,16 @@ const {db} = require('../services');
 
 const addReport = catchAsync(async (req, res) => {
   // body must include 
+  console.log("body is ")
+  console.log(req.body)
+  res.send(httpStatus.status.ok())
   await db.addReport(req.body.report);
-  res.send(200);
 });
 
 const searchReport = catchAsync(async (req, res) => {
   // body must include 
-  await db.searchReport(req.query.reportId);
-  res.send(200)
+  res.send(httpStatus.status.ok())
+  await db.searchReport(req.params.reportId);
 });
 
 module.exports = {
