@@ -9,7 +9,7 @@ const router = express.Router();
 
 
 router
-  .route('/upload')
+  .route('/addReport')
   .post(reportController.addReport)
 
 router
