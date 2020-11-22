@@ -1,32 +1,51 @@
-import React, { Component } from "react";
+import React from "react";
 import LineChart from "./engagement-line";
 import DoughnutChart from "./engagement-doughnut";
-import { Grid, Card } from "@material-ui/core";
+import {
+  Grid,
+  Card,
+  makeStyles,
+  Typography,
+  CardContent,
+} from "@material-ui/core";
 import Sidebar from "./sidebar";
 
-class Dashboard extends Component {
-  state = {};
+const drawerWidth = 208;
 
-  render() {
-    return (
-      <div>
-        <Sidebar></Sidebar>
-        <h1>Dashboard</h1>
-        <Grid container spacing={3}>
-          <Grid item xs={8}>
-            <Card>
-              <LineChart></LineChart>
-            </Card>
-          </Grid>
-          <Grid item xs={4}>
-            <Card>
-              <DoughnutChart></DoughnutChart>
-            </Card>
-          </Grid>
+const useStyles = makeStyles((theme) => ({
+  content: {
+    marginLeft: drawerWidth + 16,
+  },
+  title: {
+    marginTop: 16,
+    marginBottom: 16,
+    textAlign: "left",
+  },
+}));
+
+export default function Dashboard() {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.content}>
+      <Sidebar></Sidebar>
+
+      <Typography className={classes.title} variant="h4">
+        Dashboard
+      </Typography>
+
+      <Grid container spacing={16}>
+        <Grid item component={Card} xs={8}>
+          <CardContent>
+            <LineChart></LineChart>
+          </CardContent>
         </Grid>
-      </div>
-    );
-  }
+        <Grid item component={Card} xs={4}>
+          <CardContent>
+            <DoughnutChart></DoughnutChart>
+          </CardContent>
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
-
-export default Dashboard;
