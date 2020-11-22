@@ -1,6 +1,15 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import SampleData from "./sample.json";
+import { makeStyles, Paper, Typography } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  title: {
+    textAlign: "left",
+    marginLeft: 8,
+    marginBottom: 16,
+  },
+}));
 
 const data = {
   labels: SampleData.labels,
@@ -30,13 +39,16 @@ const options = {
   },
 };
 
-const LineChart = () => (
-  <>
-    <div className="header">
-      <h1 className="title">Engagement</h1>
-    </div>
-    <Line data={data} options={options} />
-  </>
-);
+export default function LineChart() {
+  const classes = useStyles();
 
-export default LineChart;
+  return (
+    <Paper elevation={0}>
+      <Typography className={classes.title} variant="h5">
+        Engagement
+      </Typography>
+
+      <Line data={data} options={options} />
+    </Paper>
+  );
+}
