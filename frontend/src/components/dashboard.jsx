@@ -9,6 +9,7 @@ import {
   CardContent,
 } from "@material-ui/core";
 import Sidebar from "./sidebar";
+import SampleData from "./sample.json";
 
 const drawerWidth = 208;
 
@@ -37,12 +38,12 @@ export default function Dashboard() {
       <Grid container spacing={16}>
         <Grid item component={Card} xs={8}>
           <CardContent>
-            <LineChart></LineChart>
+            <LineChart dataset={SampleData}></LineChart>
           </CardContent>
         </Grid>
         <Grid item component={Card} xs={4}>
           <CardContent>
-            <DoughnutChart></DoughnutChart>
+            <DoughnutChart dataset={SampleData}></DoughnutChart>
           </CardContent>
         </Grid>
       </Grid>

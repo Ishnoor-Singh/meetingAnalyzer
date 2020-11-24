@@ -1,6 +1,5 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import SampleData from "./sample.json";
 import { makeStyles, Paper, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -11,36 +10,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const data = {
-  labels: SampleData.labels,
-  datasets: [
-    {
-      label: SampleData.name,
-      data: SampleData.data,
-      fill: false,
-      backgroundColor: "#4072EE",
-      borderColor: "#4072EE",
-    },
-  ],
-};
+export default function LineChart(props) {
+  const classes = useStyles();
 
-const options = {
-  legend: {
-    display: false,
-  },
-  scales: {
-    yAxes: [
+  const data = {
+    labels: props.dataset.labels,
+    datasets: [
       {
-        ticks: {
-          beginAtZero: true,
-        },
+        label: props.dataset.name,
+        data: props.dataset.data,
+        fill: false,
+        backgroundColor: "#4072EE",
+        borderColor: "#4072EE",
       },
     ],
-  },
-};
+  };
 
-export default function LineChart() {
-  const classes = useStyles();
+  const options = {
+    legend: {
+      display: false,
+    },
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
+  };
 
   return (
     <Paper elevation={0}>
