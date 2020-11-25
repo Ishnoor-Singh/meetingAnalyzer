@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import LineChart from "./engagement-line";
 import DoughnutChart from "./engagement-doughnut";
 import {
@@ -27,6 +27,23 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard() {
   const classes = useStyles();
 
+  const [idname, setIdname] = useState("5fbd6698f1e0cdaf579bdf00");
+  const [dataset, setDataset] = useState(SampleData);
+
+  useEffect(() => {
+    const url = "http://localhost:3000/v1/reports/searchReport";
+
+    const getData = async () => {
+      const response = await fetch(`${url}/${idname}`);
+      const data = await response.json();
+      setDataset(data);
+    };
+
+    if (idname !== "") {
+      getData();
+    }
+  }, [idname]);
+
   return (
     <div className={classes.content}>
       <Sidebar></Sidebar>
@@ -38,12 +55,12 @@ export default function Dashboard() {
       <Grid container spacing={16}>
         <Grid item component={Card} xs={8}>
           <CardContent>
-            <LineChart dataset={SampleData}></LineChart>
+            <LineChart dataset={dataset}></LineChart>
           </CardContent>
         </Grid>
         <Grid item component={Card} xs={4}>
           <CardContent>
-            <DoughnutChart dataset={SampleData}></DoughnutChart>
+            <DoughnutChart dataset={dataset}></DoughnutChart>
           </CardContent>
         </Grid>
       </Grid>
