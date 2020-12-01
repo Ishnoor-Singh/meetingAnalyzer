@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { DropzoneDialog } from "material-ui-dropzone";
 import Button from "@material-ui/core/Button";
 import { CloudUpload } from "@material-ui/icons";
@@ -12,8 +12,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Upload(props) {
+<<<<<<< HEAD
   const classes = useStyles(props);
 
+=======
+>>>>>>> Turn upload into function component
   const [open, setOpen] = useState(false);
   const [video, setVideo] = useState([]);
 
