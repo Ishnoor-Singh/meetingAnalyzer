@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Button,
   Divider,
   Drawer,
   List,
@@ -8,8 +7,9 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@material-ui/core";
-import { CloudUpload, Dashboard } from "@material-ui/icons";
+import { Dashboard } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import Upload from "./upload";
 
 const drawerWidth = 208;
 
@@ -24,11 +24,6 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     position: "relative",
     top: 16,
-  },
-  upload: {
-    margin: theme.spacing(1),
-    position: "relative",
-    top: 616,
   },
 }));
 
@@ -53,15 +48,7 @@ export default function Sidebar(props) {
           <ListItemText primary="Dashboard" />
         </ListItem>
       </List>
-
-      <Button
-        className={classes.upload}
-        variant="contained"
-        color="primary"
-        startIcon={<CloudUpload />}
-      >
-        UPLOAD
-      </Button>
+      <Upload></Upload>
     </Drawer>
   );
 }

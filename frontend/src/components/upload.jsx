@@ -1,8 +1,19 @@
 import React, { useState } from "react";
 import { DropzoneDialog } from "material-ui-dropzone";
 import Button from "@material-ui/core/Button";
+import { CloudUpload } from "@material-ui/icons";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  upload: {
+    position: "relative",
+    top: 624,
+  },
+}));
 
 export default function Upload(props) {
+  const classes = useStyles(props);
+
   const [open, setOpen] = useState(false);
   const [video, setVideo] = useState([]);
 
@@ -23,7 +34,15 @@ export default function Upload(props) {
 
   return (
     <div>
-      <Button onClick={handleOpen.bind(this)}>Add Video</Button>
+      <Button
+        className={classes.upload}
+        variant="contained"
+        color="primary"
+        startIcon={<CloudUpload />}
+        onClick={handleOpen.bind(this)}
+      >
+        UPLOAD
+      </Button>
       <DropzoneDialog
         open={open}
         onSave={handleSave.bind(this)}
