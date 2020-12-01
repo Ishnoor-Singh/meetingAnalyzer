@@ -1,0 +1,31 @@
+body{
+	background-color: #f7f8fa;
+	padding-top: 50px;
+}
+
+.cloud{
+	height: 25%;
+	width: 25%;
+	text-align: left;
+}
+
+.greeting{
+	font-size: 22pt;
+}
+
+.dropzone{
+	font-size: 22pt;
+	height: 50px;
+}
+
+.upload_button{
+	font-size: 30pt;
+	background-color: aqua;
+	border: solid 2pt darkblue;
+	border-radius: 8px;
+}
+
+.header{
+	font-size: 40pt;
+	color: darkblue;
+}
