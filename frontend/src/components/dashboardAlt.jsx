@@ -24,30 +24,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+export default function Dashboard(props) {
   const classes = useStyles();
 
-  const [idname, setIdname] = useState("5fc684d4c805294253b7ec6f");
-  const [dataset, setDataset] = useState(SampleData);
+  const [dataset, setDataset] = useState();
+  const [msg, setMsg] = useState('');
 
   useEffect(() => {
+    let id = props.match.params.id
     const url = "http://localhost:5000/v1/reports/searchReport";
 
     const getData = async () => {
-      const response = await fetch(`${url}/${idname}`);
+      const response = await fetch(`${url}/${id}`);
       const data = await response.json();
-      console.log(data.report)
-      setDataset(data.report);
+      if (response.status === 206){
+        setMsg(data.msg)
+      }else if(response.status === 200){
+        console.log(data.report)
+        setDataset(data.report);
+      }
+      
     };
 
-    if (idname !== "") {
+    if (id !== "") {
       getData();
     }
-  }, [idname]);
+  }, []);
 
   return (
     <div className={classes.content}>
-      <Sidebar></Sidebar>
+      {dataset?<><Sidebar></Sidebar>
 
       <Typography className={classes.title} variant="h4">
         Dashboard
@@ -64,7 +70,7 @@ export default function Dashboard() {
             <DoughnutChart dataset={dataset}></DoughnutChart>
           </CardContent>
         </Grid>
-      </Grid>
+      </Grid></>:<h1>{msg} Please keep refreshing the page every few mins</h1>}
     </div>
   );
 }

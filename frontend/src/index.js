@@ -1,12 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route
+  } from "react-router-dom";
+import Dashboard from './components/dashboardAlt'
+import Upload from './components/upload';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+   <Router>
+        <div>
+        <Switch>
+            <Route exact path="/" component={Upload} />
+            <Route exact path="/dashboard/:id" component={Dashboard} />
+        </Switch>
+        </div>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

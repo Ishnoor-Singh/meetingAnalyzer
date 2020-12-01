@@ -1,50 +1,73 @@
 import React, { Component } from "react";
 import { DropzoneDialog } from "material-ui-dropzone";
 import Button from "@material-ui/core/Button";
+import { CloudUpload } from "@material-ui/icons";
+import { makeStyles } from "@material-ui/core/styles";
+const base = 'http://localhost:5000/'
+const useStyles = makeStyles((theme) => ({
+  upload: {
+    position: "relative",
+    top: 624,
+  },
+}));
 
-export default class DropzoneUDialog extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-      files: [],
-    };
-  }
+export default function Upload(props) {
+  const classes = useStyles(props);
 
-  handleClose() {
-    this.setState({
-      open: false,
-    });
-  }
+  const [open, setOpen] = useState(false);
+  const [video, setVideo] = useState([]);
 
-  handleSave(files) {
-    // Save files to state and close modal
-    this.setState({
-      files: files,
-      open: false,
-    });
-  }
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-  handleOpen() {
-    this.setState({
-      open: true,
-    });
-  }
+  const handleSave = (files) => {
+    setVideo(files);
+    setOpen(false);
 
-  render() {
-    return (
-      <div>
-        <Button onClick={this.handleOpen.bind(this)}>Add Image</Button>
-        <DropzoneDialog
-          open={this.state.open}
-          onSave={this.handleSave.bind(this)}
-          filesLimit={1}
-          maxFileSize={5000000} // 5 MB
-          acceptedFiles={["video/*"]}
-          showPreviews={true}
-          onClose={this.handleClose.bind(this)}
-        />
-      </div>
-    );
-  }
+    console.log(files); // TODO: remove
+
+
+    // code to post the file to the backend
+    const formdata = new FormData();
+    formdata.append('file', files[0])
+    fetch(`${base}v1/s3/saveFile`, {
+      method: 'POST',
+      body: formdata,
+    }).then(res => {
+      return(res.json());
+    }).then(body =>{
+      window.location = `/dashboard/${body.msg.id}`
+      console.log(body)
+    }).catch(err => {
+      console.error(err)
+    })
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  return (
+    <div>
+      <Button
+        className={classes.upload}
+        variant="contained"
+        color="primary"
+        startIcon={<CloudUpload />}
+        onClick={handleOpen.bind(this)}
+      >
+        UPLOAD
+      </Button>
+      <DropzoneDialog
+        open={open}
+        onSave={handleSave.bind(this)}
+        filesLimit={1}
+        maxFileSize={5000000} // 5 MB
+        acceptedFiles={["image/*"]}
+        showPreviews={true}
+        onClose={handleClose.bind(this)}
+      />
+    </div>
+  );
 }
