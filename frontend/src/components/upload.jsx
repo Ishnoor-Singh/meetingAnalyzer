@@ -1,45 +1,50 @@
-import React, {useCallback} from "react";
-import "./upload.css";
-import cloud from "../cloud_upload.png";
-import {useDropzone} from 'react-dropzone';
+import React, { Component } from "react";
+import { DropzoneDialog } from "material-ui-dropzone";
+import Button from "@material-ui/core/Button";
 
+export default class DropzoneUDialog extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+      files: [],
+    };
+  }
 
+  handleClose() {
+    this.setState({
+      open: false,
+    });
+  }
 
-function MyDropzone() {
-  const onDrop = useCallback(acceptedFiles => {
-    // Do something with the files
-  }, [])
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+  handleSave(files) {
+    // Save files to state and close modal
+    this.setState({
+      files: files,
+      open: false,
+    });
+  }
 
-  return (
-    <div {...getRootProps()} className="dropzone">
-      <input {...getInputProps()} />
-      {
-        isDragActive ?
-          <p>Drop the files here ...</p> :
-          <p>Drag and drop your video here</p>
-      }
-    </div>
-  )
-}
+  handleOpen() {
+    this.setState({
+      open: true,
+    });
+  }
 
-export default function Upload(){
-
-  
+  render() {
     return (
-      <>
-        <div className="Upload">
-          <h1 className="header">Viber</h1>
-          <img src={cloud} alt="Cloud" className="cloud" />
-          <br />
-          <MyDropzone className="dropzone"></MyDropzone>
-          <br /><br /><br />
-          <button className="upload_button">
-            View report
-          </button>
-        </div>
-      </>
+      <div>
+        <Button onClick={this.handleOpen.bind(this)}>Add Image</Button>
+        <DropzoneDialog
+          open={this.state.open}
+          onSave={this.handleSave.bind(this)}
+          filesLimit={1}
+          maxFileSize={5000000} // 5 MB
+          acceptedFiles={["video/*"]}
+          showPreviews={true}
+          onClose={this.handleClose.bind(this)}
+        />
+      </div>
     );
-  
-
+  }
 }
