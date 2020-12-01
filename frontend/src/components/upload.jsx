@@ -1,50 +1,38 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { DropzoneDialog } from "material-ui-dropzone";
 import Button from "@material-ui/core/Button";
 
-export default class DropzoneUDialog extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-      files: [],
-    };
-  }
+export default function Upload(props) {
+  const [open, setOpen] = useState(false);
+  const [video, setVideo] = useState([]);
 
-  handleClose() {
-    this.setState({
-      open: false,
-    });
-  }
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-  handleSave(files) {
-    // Save files to state and close modal
-    this.setState({
-      files: files,
-      open: false,
-    });
-  }
+  const handleSave = (files) => {
+    setVideo(files);
+    setOpen(false);
 
-  handleOpen() {
-    this.setState({
-      open: true,
-    });
-  }
+    console.log(video); // TODO: remove
+  };
 
-  render() {
-    return (
-      <div>
-        <Button onClick={this.handleOpen.bind(this)}>Add Image</Button>
-        <DropzoneDialog
-          open={this.state.open}
-          onSave={this.handleSave.bind(this)}
-          filesLimit={1}
-          maxFileSize={5000000} // 5 MB
-          acceptedFiles={["video/*"]}
-          showPreviews={true}
-          onClose={this.handleClose.bind(this)}
-        />
-      </div>
-    );
-  }
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  return (
+    <div>
+      <Button onClick={handleOpen.bind(this)}>Add Video</Button>
+      <DropzoneDialog
+        open={open}
+        onSave={handleSave.bind(this)}
+        filesLimit={1}
+        maxFileSize={5000000} // 5 MB
+        acceptedFiles={["image/*"]}
+        showPreviews={true}
+        onClose={handleClose.bind(this)}
+      />
+    </div>
+  );
 }

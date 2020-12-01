@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
 import Dashboard from "./components/dashboard";
-import DropzoneDialog from "./components/upload";
+import Upload from "./components/upload";
 
 function App() {
   return (
     <div className="App">
-      <DropzoneDialog></DropzoneDialog>
+      <Dashboard></Dashboard>
     </div>
   );
 }
