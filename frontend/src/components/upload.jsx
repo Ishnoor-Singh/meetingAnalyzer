@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
   upload: {
     position: "relative",
     top: 624,
+    width: 184,
   },
 }));
 
@@ -72,7 +73,7 @@ export default function Upload(props) {
         onSave={handleSave.bind(this)}
         filesLimit={1}
         maxFileSize={5000000} // 5 MB
-        acceptedFiles={["image/*"]}
+        acceptedFiles={["video/*"]}
         showPreviews={true}
         onClose={handleClose.bind(this)}
       />
