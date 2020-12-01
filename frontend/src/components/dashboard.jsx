@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import Sidebar from "./sidebar";
 import SampleData from "./sample.json";
+import axios from "axios";
 
 const drawerWidth = 208;
 
@@ -33,14 +34,11 @@ export default function Dashboard() {
   useEffect(() => {
     const url = "http://localhost:3000/v1/reports/searchReport";
 
-    const getData = async () => {
-      const response = await fetch(`${url}/${idname}`);
-      const data = await response.json();
-      setDataset(data);
-    };
-
     if (idname !== "") {
-      getData();
+      axios.get(`${url}/${idname}`).then((res) => {
+        const data = res.data;
+        setDataset(data);
+      });
     }
   }, [idname]);
 
