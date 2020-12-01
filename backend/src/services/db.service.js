@@ -1,25 +1,31 @@
 
 require('dotenv').config()
-const mongoose = require('mongoose');
-
-
-const reportSchema = new mongoose.Schema({
-  video_name: String,
-  status: String,
-  name: String,
-  labels : [String],
-  data : [Number]
-});
-
-// class is returned from .model
-const Report = mongoose.model('Report', reportSchema);
+const {Report} = require('../models/report.model')
 
 const addReport = async (reportName) => {
-  report = new Report({name: reportName})
+  const report = new Report({name: reportName})
   let reportDoc = await report.save()
   return reportDoc._id;
 }
-
+/**
+ * let Report = require('models/report')
+ * jest.mock('models/report', () => {
+ * return {
+ *  
+ * }
+ * })
+ * descrube("when addReport iscalled", () =>  {
+ * beforeEach(() => {
+ * addReport(params)
+ * })
+ * it("shpould call constructoir with the right name", () => {
+ *    expect(mongoose.model.report).tohaveBeenCalledWith({name: params})
+ * })
+ * it("should call sace", () => {
+ *    expect(save).tohaveBeenCalledTimes(1)
+ * })
+ * })
+ *
 /*
   it('report shoud be saved to the db', async done => {
   const res = await request.post('/v1/reports/addReport')
