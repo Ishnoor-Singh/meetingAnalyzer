@@ -13,16 +13,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Upload(props) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-  const classes = useStyles(props);
 
-=======
->>>>>>> Turn upload into function component
-=======
   const classes = useStyles(props);
-
->>>>>>> Add upload button to sidebar
   const [open, setOpen] = useState(false);
   const [video, setVideo] = useState([]);
 
