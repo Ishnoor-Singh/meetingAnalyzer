@@ -17,7 +17,7 @@ function MyDropzone() {
       {
         isDragActive ?
           <p>Drop the files here ...</p> :
-          <p>Drag and drop you video here,<br />or use the button below</p>
+          <p>Drag and drop your video here</p>
       }
     </div>
   )
