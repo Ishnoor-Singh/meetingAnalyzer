@@ -8,9 +8,9 @@ const reportController = require('../../controllers/report.controller');
 const router = express.Router();
 
 
-router
-  .route('/addReport')
-  .post(reportController.addReport)
+// router
+//   .route('/addReport')
+//   .post(reportController.addReport)
 
 router
   .route('/searchReport/:reportId')

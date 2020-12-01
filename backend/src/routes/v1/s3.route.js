@@ -8,13 +8,9 @@ const s3Controller = require('../../controllers/s3.controller');
 const router = express.Router();
 
 
-router
-  .route('/saveFile')
-  .post(s3Controller.saveFile)
+router.post('/saveFile', s3Controller.saveFile)
+// router.route('/saveFile').post(s3Controller.saveFile)
 
-// router
-//   .route('/searchReport/:reportId')
-//   .get(reportController.searchReport)
 
 
 module.exports = router;

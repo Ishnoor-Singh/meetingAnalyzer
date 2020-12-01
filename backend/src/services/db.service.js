@@ -1,9 +1,14 @@
 
 require('dotenv').config()
 const {Report} = require('../models/report.model')
+var ObjectID = require('mongodb').ObjectID;
 
-const addReport = async (reportName) => {
-  const report = new Report({name: reportName})
+const addReport = async (fileName) => {
+  const report = new Report({
+                          name: fileName,
+                          video_name: `https://elasticbeanstalk-us-west-1-516879159697.s3-us-west-1.amazonaws.com/myapp/${fileName}`,
+                          status: 0
+                        })
   let reportDoc = await report.save()
   return reportDoc._id;
 }
@@ -60,11 +65,10 @@ const addReport = async (reportName) => {
  */
 
 const updateReport = async (reportId,updatedReport) => {
-  Report.updateOne({_id: reportId}, {
+  await Report.updateOne({_id: new ObjectID(reportId)}, {
     status: updatedReport.status,
     labels: updatedReport.labels,
     data: updatedReport.data,
-    
   })
   return await Report.findById(reportId)
 }

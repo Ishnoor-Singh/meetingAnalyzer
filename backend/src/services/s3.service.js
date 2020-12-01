@@ -11,7 +11,7 @@ const s3bucket = new AWS.S3({
 })
 
 function uploadToS3(fileName){
-  const readStream = fs.createReadStream(fileName);
+  const readStream = fs.createReadStream(`public/${fileName}`);
   console.log(fileName.split('/'))
   console.log(readStream)
 
@@ -34,23 +34,20 @@ function uploadToS3(fileName){
   });
 }
 
-function processFile(myFile, req, res){
-     myFile.mv(`public/${myFile.name}`, function (err) {
-        if (err) {
-            console.log(err)
-            return ({ msg: "Error occured" });
-        }
-        // returing the response with file path and name
-        return ({name: myFile.name, path: `/${myFile.name}`});
-    });
+function processFile(myFile){
+  myFile.mv(`public/${myFile.name}`, function (err) {
+    if (err) {
+        console.log(err)
+        return "Error occured"
+    }
+    // returing the response with file path and name
+    return ('File Saved');
+  });
 
-    return uploadToS3(`public/${myFile.name}`).then(() => console.log('uploaded')).catch((err) => console.log('err: ' + err))
+  return uploadToS3(`${myFile.name}`).then(() => ('uploaded')).catch((err) => ('err: ' + err))
 }
 
-// function saveFile(params) {
-    
-// }
-
 module.exports={
-    processFile
+    processFile,
+    uploadToS3
 }
