@@ -1,24 +1,36 @@
 
 require('dotenv').config()
-const mongoose = require('mongoose');
+const {Report} = require('../models/report.model')
+var ObjectID = require('mongodb').ObjectID;
 
-
-const reportSchema = new mongoose.Schema({
-  video_name: String,
-  status: String,
-  name: String,
-  labels : [String],
-  data : [Number]
-});
-
-// class is returned from .model
-const Report = mongoose.model('Report', reportSchema);
-
-const addReport = async (reportName) => {
-  report = new Report({name: reportName})
+const addReport = async (fileName) => {
+  const report = new Report({
+                          name: fileName,
+                          video_name: `https://elasticbeanstalk-us-west-1-516879159697.s3-us-west-1.amazonaws.com/myapp/${fileName}`,
+                          status: 0
+                        })
   let reportDoc = await report.save()
   return reportDoc._id;
 }
+/**
+ * let Report = require('models/report')
+ * jest.mock('models/report', () => {
+ * return {
+ *  
+ * }
+ * })
+ * descrube("when addReport iscalled", () =>  {
+ * beforeEach(() => {
+ * addReport(params)
+ * })
+ * it("shpould call constructoir with the right name", () => {
+ *    expect(mongoose.model.report).tohaveBeenCalledWith({name: params})
+ * })
+ * it("should call sace", () => {
+ *    expect(save).tohaveBeenCalledTimes(1)
+ * })
+ * })
+ *
 
 /*
   it('report shoud be saved to the db', async done => {
@@ -54,11 +66,11 @@ const addReport = async (reportName) => {
  */
 
 const updateReport = async (reportId,updatedReport) => {
-  Report.updateOne({_id: reportId}, {
+  await Report.updateOne({_id: new ObjectID(reportId)}, {
     status: updatedReport.status,
     labels: updatedReport.labels,
     data: updatedReport.data,
-    
+
   })
   return await Report.findById(reportId)
 }

@@ -14,6 +14,8 @@ const routes = require('./routes/v1');
 const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
 const bodyParser = require('body-parser')
+const fileUpload = require('express-fileupload');
+
 
 const app = express();
 
@@ -56,6 +58,8 @@ if (config.env === 'production') {
 // Accept json arguments in post body
 app.use(bodyParser.json())
 app.use(bodyParser.raw())
+
+app.use(fileUpload())
 
 // v1 api routes
 app.use('/v1', routes);
