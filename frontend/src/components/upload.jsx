@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import { CloudUpload } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 const base = 'http://localhost:5000/'
+
 const useStyles = makeStyles((theme) => ({
   upload: {
     position: "relative",
@@ -15,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Upload(props) {
 
   const classes = useStyles(props);
+
   const [open, setOpen] = useState(false);
   const [video, setVideo] = useState([]);
 
@@ -43,6 +45,7 @@ export default function Upload(props) {
     }).catch(err => {
       console.error(err)
     })
+
   };
 
   const handleOpen = () => {

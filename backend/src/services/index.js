@@ -1,5 +1,6 @@
 module.exports.dbService = require('./db.service');
 module.exports.s3Service = require('./s3.service');
+
 // module.exports.authService = require('./auth.service');
 // module.exports.emailService = require('./email.service');
 // module.exports.tokenService = require('./token.service');

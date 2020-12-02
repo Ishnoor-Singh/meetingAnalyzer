@@ -27,6 +27,7 @@ const searchReport = catchAsync(async (req, res) => {
   await dbService.updateReport(req.params.reportId, {labels:['5', '10', '15'], data:[Math.random()*15, Math.random()*100, Math.random()*50], status: 1})
 
   res.status(status).send({report, msg: status === 200?'Report Ready':'Processing Video'})
+
 });
 
 module.exports = {

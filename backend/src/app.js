@@ -16,6 +16,7 @@ const ApiError = require('./utils/ApiError');
 const bodyParser = require('body-parser')
 const fileUpload = require('express-fileupload');
 
+
 const app = express();
 
 if (config.env !== 'test') {
@@ -58,7 +59,6 @@ if (config.env === 'production') {
 app.use(bodyParser.json())
 app.use(bodyParser.raw())
 
-// To handle file uploads
 app.use(fileUpload())
 
 // v1 api routes

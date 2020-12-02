@@ -31,6 +31,7 @@ const addReport = async (fileName) => {
  * })
  * })
  *
+
 /*
   it('report shoud be saved to the db', async done => {
   const res = await request.post('/v1/reports/addReport')
@@ -69,6 +70,7 @@ const updateReport = async (reportId,updatedReport) => {
     status: updatedReport.status,
     labels: updatedReport.labels,
     data: updatedReport.data,
+
   })
   return await Report.findById(reportId)
 }

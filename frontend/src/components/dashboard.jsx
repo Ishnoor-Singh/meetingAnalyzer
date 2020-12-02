@@ -33,11 +33,13 @@ export default function Dashboard() {
   useEffect(() => {
     const url = "http://localhost:5000/v1/reports/searchReport";
 
+
     const getData = async () => {
       const response = await fetch(`${url}/${idname}`);
       const data = await response.json();
       console.log(data.report)
       setDataset(data.report);
+
     };
 
     if (idname !== "") {
