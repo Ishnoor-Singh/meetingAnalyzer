@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { DropzoneDialog } from "material-ui-dropzone";
+import { DropzoneArea } from "material-ui-dropzone";
 import Button from "@material-ui/core/Button";
 import { CloudUpload } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import './upload.css';
+
 const base = "http://localhost:5000/";
+
 
 const useStyles = makeStyles((theme) => ({
   upload: {
@@ -62,15 +66,17 @@ export default function Upload(props) {
         UPLOAD
       </Button> */}
 
-      <DropzoneDialog
-        open={true}
-        onSave={handleSave.bind(this)}
-        filesLimit={1}
-        maxFileSize={50000000} // 50 MB
-        acceptedFiles={["video/*"]}
-        showPreviews={true}
-        onClose={handleClose.bind(this)}
-      />
+      <div id="dropzone">
+        <DropzoneArea
+          open={true}
+          onSave={handleSave.bind(this)}
+          filesLimit={1}
+          maxFileSize={50000000} // 50 MB
+          acceptedFiles={["video/*"]}
+          showPreviews={true}
+          onClose={handleClose.bind(this)}
+        />
+      </div>
     </div>
   );
 }

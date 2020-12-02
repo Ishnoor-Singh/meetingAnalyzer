@@ -1,5 +1,5 @@
 body{
-	background-color: #f7f8fa;
+	/*background-color: #f7f8fa;*/
 	padding-top: 50px;
 }
 
@@ -14,9 +14,27 @@ body{
 }
 
 .dropzone{
+    border-radius: 5px;
+    border: 2px dashed rgb(0, 135, 247);
+    border-image: none;
+    max-width: 10px;
+    margin-left: auto;
+    margin-right: auto;
 	font-size: 22pt;
 	height: 50px;
 }
+
+MuiDropzoneArea-root {
+	background: black;
+}
+
+/*DropzoneArea {
+	font-size: 22pt;
+	height: 50px;
+	"width" : "100%";
+	"height" : "20%";
+	"border" : "1px solid black";
+}*/
 
 .upload_button{
 	font-size: 30pt;

@@ -13,7 +13,7 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <React.StrictMode>
    <Router>
-        <h1>Welcome to Viber, an online meeting analysis tool</h1>
+        <h1>Welcome to <span id = "title">Viber</span>, an online meeting analysis tool</h1>
         <h3>Upload a meeting recording below to get started!</h3>
         <div>
         <Switch>
