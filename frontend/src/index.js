@@ -21,7 +21,7 @@ ReactDOM.render(
             <Route exact path="/dashboard/:id" component={Dashboard} />
         </Switch>
         </div>
-        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
         <h4>By: Andrew Battat, Francesco Colonnese, Ashkan Faghihi, Dominic Loftus, Juan Carlo Magat, and Ishnoor Singh</h4>
     </Router>
   </React.StrictMode>,
