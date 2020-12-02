@@ -9,7 +9,6 @@ import {
 } from "@material-ui/core";
 import { Dashboard } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
-import Upload from "./upload";
 
 const drawerWidth = 208;
 
@@ -48,7 +47,6 @@ export default function Sidebar(props) {
           <ListItemText primary="Dashboard" />
         </ListItem>
       </List>
-      <Upload></Upload>
     </Drawer>
   );
 }
