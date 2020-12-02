@@ -66,7 +66,7 @@ export default function Upload(props) {
         open={true}
         onSave={handleSave.bind(this)}
         filesLimit={1}
-        maxFileSize={5000000} // 5 MB
+        maxFileSize={50000000} // 50 MB
         acceptedFiles={["video/*"]}
         showPreviews={true}
         onClose={handleClose.bind(this)}
