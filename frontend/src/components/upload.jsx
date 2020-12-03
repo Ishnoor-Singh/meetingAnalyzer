@@ -44,7 +44,7 @@ export default function Upload(props) {
   };
 
   return (
-    <div>
+    <div data-testid="upload">
       <h4>Welcome to Viber, an online meeting analysis tool</h4>
       <h3>Upload a meeting recording below to get started!</h3>
       <div id="dropzone">
