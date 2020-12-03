@@ -65,15 +65,15 @@ const addReport = async (fileName) => {
   done()
  */
 
-const updateReport = async (reportId,updatedReport) => {
-  await Report.updateOne({_id: new ObjectID(reportId)}, {
-    status: updatedReport.status,
-    labels: updatedReport.labels,
-    data: updatedReport.data,
+// const updateReport = async (reportId,updatedReport) => {
+//   await Report.updateOne({_id: new ObjectID(reportId)}, {
+//     status: updatedReport.status,
+//     labels: updatedReport.labels,
+//     data: updatedReport.data,
 
-  })
-  return await Report.findById(reportId)
-}
+//   })
+//   return await Report.findById(reportId)
+// }
 
 const searchReport = async (reportId) => {
   return await Report.findById(reportId);
@@ -83,6 +83,6 @@ const searchReport = async (reportId) => {
 module.exports = {
   addReport, 
   searchReport,
-  updateReport
+  // updateReport
 };
 
