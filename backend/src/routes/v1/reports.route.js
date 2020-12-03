@@ -33,6 +33,7 @@ const router = express.Router();
  *        404:
  *          description: No report with such an id exists
  */
+
 router
   .route('/searchReport/:reportId')
   .get(reportController.searchReport)
