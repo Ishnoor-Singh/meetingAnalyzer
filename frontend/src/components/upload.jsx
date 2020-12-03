@@ -45,7 +45,7 @@ export default function Upload(props) {
 
   return (
     <div>
-      <div id="header">Welcome to Viber, an online meeting analysis tool</div>
+      <h4>Welcome to Viber, an online meeting analysis tool</h4>
       <h3>Upload a meeting recording below to get started!</h3>
       <div id="dropzone">
         <DropzoneArea
@@ -57,7 +57,7 @@ export default function Upload(props) {
         />
       </div>
       <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-        <h4>By: Andrew Battat, Francesco Colonnese, Ashkan Faghihi, Dominic Loftus, Juan Carlo Magat, and Ishnoor Singh</h4>
+      <h5>By: Andrew Battat, Francesco Colonnese, Ashkan Faghihi, Dominic Loftus, Juan Carlo Magat, and Ishnoor Singh</h5>
     </div>
   );
 }
