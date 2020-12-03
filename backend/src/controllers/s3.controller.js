@@ -11,8 +11,10 @@ const saveFile = catchAsync(async (req, res) => {
 
     const {status, msg} = await s3Service
                             .processFile(myFile)
-                            .then(async _ => {
+                            .then(async prevRes => {
+                                console.log('prevRes '+prevRes)
                                 const id = await dbService.addReport(myFile.name)
+                                console.log('is id '  + id)
                                 return {
                                     status: 201,
                                     msg: {
@@ -25,6 +27,7 @@ const saveFile = catchAsync(async (req, res) => {
                                     msg:err
                                 }
                             })
+    console.table({status, msg})
     return res.status(status).send({ msg })
 })
 
