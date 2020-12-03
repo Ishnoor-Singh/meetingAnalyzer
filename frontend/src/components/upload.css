@@ -1,6 +1,23 @@
 body{
-	background-color: #f7f8fa;
+	/*background-color: #f7f8fa;*/
 	padding-top: 50px;
+}
+
+
+h1 {
+    margin-left: 20px;
+}
+
+h4 {
+    font-size: 60px;
+    font-weight: 600;
+    color: #f1faee;
+}
+
+h3 {
+    font-size: 35px;
+    font-weight: 600;
+    color: #f1faee;
 }
 
 .cloud{
@@ -13,10 +30,17 @@ body{
 	font-size: 22pt;
 }
 
-.dropzone{
+/*.dropzone{
+    border-radius: 5px;
+    border: 2px dashed rgb(0, 135, 247);
+    border-image: none;
+    max-width: 10px;
+    margin-left: auto;
+    margin-right: auto;
 	font-size: 22pt;
 	height: 50px;
-}
+}*/
+
 
 .upload_button{
 	font-size: 30pt;
@@ -26,6 +50,7 @@ body{
 }
 
 .header{
-	font-size: 40pt;
-	color: darkblue;
+    font-size: 60px;
+    font-weight: 600;
+    color: #f1faee;
 }

@@ -1,0 +1,139 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="\">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>assess module &#8212; Viber AI 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="ai" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-assess">
+<span id="assess-module"></span><h1>assess module<a class="headerlink" href="#module-assess" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="assess.classify_img">
+<code class="descclassname">assess.</code><code class="descname">classify_img</code><span class="sig-paren">(</span><em>img</em><span class="sig-paren">)</span><a class="headerlink" href="#assess.classify_img" title="Permalink to this definition">¶</a></dt>
+<dd><p>classifies an image frame. 
+:param img: (cv2 image) an image to classify.
+:return: (int) the highest classification associated with the analyzed frame.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="assess.compute_score">
+<code class="descclassname">assess.</code><code class="descname">compute_score</code><span class="sig-paren">(</span><em>scores</em><span class="sig-paren">)</span><a class="headerlink" href="#assess.compute_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>computes a score given an array of scores 
+:param scores: (list) A list of scores associated with every frame in the video
+:return: (float) The final score associated with the scores array.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="assess.db_update">
+<code class="descclassname">assess.</code><code class="descname">db_update</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#assess.db_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>updates an item as completed on the db. 
+:param item: (tuple) formed by (video_name, database_id).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="assess.loop">
+<code class="descclassname">assess.</code><code class="descname">loop</code><span class="sig-paren">(</span><em>db_collection</em>, <em>status_code</em>, <em>wait_time</em><span class="sig-paren">)</span><a class="headerlink" href="#assess.loop" title="Permalink to this definition">¶</a></dt>
+<dd><p>constantly checks the db, if new reviews have to be processed. 
+:param db_collection: (pymongo collection) the collection to scrape information from
+:param status_code: (int) the status to monitor in case new reviews are detected
+:param wait_time: (int) time to wait between sampling the db</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="assess.parse_video">
+<code class="descclassname">assess.</code><code class="descname">parse_video</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#assess.parse_video" title="Permalink to this definition">¶</a></dt>
+<dd><p>parses a video by downloading from s3 and computing 
+its score based on analyzing its frames. 
+:param obj: (tuple) formed by (video_name, database_id)
+:return: (float) The score associated with the parsed video.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="assess.read_frames">
+<code class="descclassname">assess.</code><code class="descname">read_frames</code><span class="sig-paren">(</span><em>video_path</em><span class="sig-paren">)</span><a class="headerlink" href="#assess.read_frames" title="Permalink to this definition">¶</a></dt>
+<dd><p>reads frames and appends the current classification to an array.
+:param video_path: (str) the path to the video to read (must be .mp4)
+:return: (list) An array where index i corresponds to classification at frame i.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">ai</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">ai</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Francesco Colonnese.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/assess.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
