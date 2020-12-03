@@ -36,7 +36,7 @@ describe('Test getReport Endpoint', () => {
       var id = await dbService.addReport("fileName")
       var report = await Report.findById({_id: id})
       expect(report).not.toBeNull()
-  })
+    })
   })
 
   describe('Test functiosn', () => {
@@ -47,26 +47,11 @@ describe('Test getReport Endpoint', () => {
         status: "1"})
 
       var report = await Report.findById({_id: new ObjectID("33cb6b9b4f4ddef1ad47f940")}).lean()
-      var json = {
-        "__v": 0,
-       "_id": "33cb6b9b4f4ddef1ad47f940",
-        "data": [
-          5,
-          10,
-          15,
-        ],
-        "labels": [
-          "5",
-          "10",
-          "15",
-        ],
-       "status": "1"
-      }
       expect(report.data).toEqual([5,10,15])
       expect(report.labels).toEqual(["5","10","15"])
       expect(report.status).toEqual("1")
 
-  })
+    })
   })
 
   test('return status 206 since report exists and status 0', async () => {
