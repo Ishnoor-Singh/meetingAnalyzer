@@ -53,7 +53,7 @@ app.use(passport.initialize());
 app.use(bodyParser.json())
 app.use(bodyParser.raw())
 
-app.use(fileUpload())
+app.use(fileUpload({createParentPath: true}))
 
 // v1 api routes
 app.use('/v1', routes);

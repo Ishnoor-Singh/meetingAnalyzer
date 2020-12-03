@@ -8,4 +8,5 @@ module.exports = {
   coveragePathIgnorePatterns: ['node_modules', 'src/config', 'src/app.js', 'tests'],
   coverageReporters: ['text', 'lcov', 'clover', 'html'],
   preset: '@shelf/jest-mongodb',
+  testTimeout: 90000
 };

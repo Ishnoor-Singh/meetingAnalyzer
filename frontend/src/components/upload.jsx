@@ -50,8 +50,8 @@ export default function Upload(props) {
       <div id="dropzone">
         <DropzoneArea
           filesLimit={1}
-          maxFileSize={50000000} // 50 MB
-          acceptedFiles={["video/*"]}
+          maxFileSize={500000000000} // 50 MB
+          // acceptedFiles={["video/*"]}
           showPreviews={true}
           onChange={(files) => handleSave(files)}
         />
