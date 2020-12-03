@@ -124,7 +124,7 @@ def loop(db_collection, status_code, wait_time):
 	# logging.debug(f'Received {filtered}')
 	for to_classify in filtered:
 		parse_video(to_classify)
-		db_update(item)
+		db_update(to_classify)
 	# logging.debug(f'Completed {filtered}')
 	time.sleep(wait_time)
 
