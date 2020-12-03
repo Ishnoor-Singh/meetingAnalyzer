@@ -1,12 +1,15 @@
+import time
 import numpy as np
 import cv2
 import tensorflow as tf
 import boto3
+import logging
+
 
 # s3 setup
 BUCKET_NAME = "elasticbeanstalk-us-west-1-516879159697"
 session = boto3.Session(
-			region_name='us-west-2',
+			region_name='us-west-1',
 			aws_access_key_id=os.environ['AWS_ACCESS_KEY'],
 			aws_secret_access_key=os.environ['AWS_SECRET_KEY'])
 s3 = boto3.resource('s3')
@@ -27,7 +30,12 @@ settings = {
     'minSize': (50, 50)
 }
 
+
 def classify_img(img):
+	"""classifies an image frame. 
+		:param img: (cv2 image) an image to classify.
+		:return: (int) the highest classification associated with the analyzed frame. 
+	"""
 	gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 	detected = face_detection.detectMultiScale(gray, **settings)
 	states = [0, 0, 0, 0, 0]
@@ -41,7 +49,12 @@ def classify_img(img):
 		states[predictions] += 1
 	return np.array(states).argmax()
 
+
 def read_frames(video_path):
+	"""reads frames and appends the current classification to an array.
+		:param video_path: (str) the path to the video to read (must be .mp4)
+		:return: (list) An array where index i corresponds to classification at frame i.  
+	"""
 	vidcap = cv2.VideoCapture(video_path)
 	success, image = vidcap.read()
 	ps_count = []
@@ -51,7 +64,12 @@ def read_frames(video_path):
 		success, image = vidcap.read()
 	return ps_count
 
+
 def compute_score(scores):
+	"""computes a score given an array of scores 
+		:param scores: (list) A list of scores associated with every frame in the video
+		:return: (float) The final score associated with the scores array. 
+	"""
 	curr_score = 50
 	for classification in scores: 
 		if classification == 1 or classification == 3: 
@@ -60,7 +78,13 @@ def compute_score(scores):
 			curr_score -= 0.2
 	return curr_score	
 
+
 def parse_video(obj):
+	"""parses a video by downloading from s3 and computing 
+		its score based on analyzing its frames. 
+		:param obj: (tuple) formed by (video_name, database_id)
+		:return: (float) The score associated with the parsed video. 
+	"""
 	video_name, _id = obj
 	score = 0
 	with tempfile.TemporaryDirectory() as s3dir:
@@ -70,13 +94,36 @@ def parse_video(obj):
 		scores = read_frames(vp)
 		return compute_score(scores)
 
+
+def db_update(item):
+	"""updates an item as completed on the db. 
+		:param item: (tuple) formed by (video_name, database_id).
+	"""
+	logging.info(f'Updating {item} on DB...')
+	preds.update_one({
+				'_id': item[1]
+				},
+				{
+				'$set': {
+					'status': 1
+				}
+			}, upsert=False)
+	logging.info(f'Successfully updated {item} on DB')
+
+
 def loop(db_collection, status_code, wait_time):
+	"""constantly checks the db, if new reviews have to be processed. 
+		:param db_collection: (pymongo collection) the collection to scrape information from
+		:param status_code: (int) the status to monitor in case new reviews are detected
+		:param wait_time: (int) time to wait between sampling the db
+	"""
 	filtered = \
 		[(p['video_name'], p['_id'])
 			for p in db_collection.find() if p['status'] == status_code]
 	logging.debug(f'Received {filtered}')
 	for to_classify in filtered:
 		parse_video(to_classify)
+		db_update(item)
 	logging.debug(f'Completed {filtered}')
 	time.sleep(wait_time)
 
