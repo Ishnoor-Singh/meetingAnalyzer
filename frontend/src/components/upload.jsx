@@ -45,6 +45,8 @@ export default function Upload(props) {
 
   return (
     <div>
+      <div id="header">Welcome to Viber, an online meeting analysis tool</div>
+      <h3>Upload a meeting recording below to get started!</h3>
       <div id="dropzone">
         <DropzoneArea
           filesLimit={1}
@@ -54,6 +56,8 @@ export default function Upload(props) {
           onChange={(files) => handleSave(files)}
         />
       </div>
+      <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+        <h4>By: Andrew Battat, Francesco Colonnese, Ashkan Faghihi, Dominic Loftus, Juan Carlo Magat, and Ishnoor Singh</h4>
     </div>
   );
 }

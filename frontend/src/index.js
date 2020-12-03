@@ -13,16 +13,12 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <React.StrictMode>
    <Router>
-        <h1>Welcome to <span id = "title">Viber</span>, an online meeting analysis tool</h1>
-        <h3>Upload a meeting recording below to get started!</h3>
         <div>
         <Switch>
             <Route exact path="/" component={Upload} />
             <Route exact path="/dashboard/:id" component={Dashboard} />
         </Switch>
         </div>
-        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-        <h4>By: Andrew Battat, Francesco Colonnese, Ashkan Faghihi, Dominic Loftus, Juan Carlo Magat, and Ishnoor Singh</h4>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
