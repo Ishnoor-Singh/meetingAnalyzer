@@ -1,17 +1,18 @@
+import os
 import time
 import numpy as np
 import cv2
 import tensorflow as tf
 import boto3
 import logging
-
+import pymongo
 
 # s3 setup
 BUCKET_NAME = "elasticbeanstalk-us-west-1-516879159697"
 session = boto3.Session(
 			region_name='us-west-1',
-			aws_access_key_id=os.environ['AWS_ACCESS_KEY'],
-			aws_secret_access_key=os.environ['AWS_SECRET_KEY'])
+			aws_access_key_id="AKIAI3AKGQZ25MWDPIIQ",
+			aws_secret_access_key="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")
 s3 = boto3.resource('s3')
 
 # mongodb setup
