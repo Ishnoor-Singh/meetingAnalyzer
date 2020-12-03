@@ -40,7 +40,7 @@ app.use(mongoSanitize());
 // gzip compression
 app.use(compression());
 
-console.log(config)
+// console.log(config)
 
 // enable cors
 app.use(cors());

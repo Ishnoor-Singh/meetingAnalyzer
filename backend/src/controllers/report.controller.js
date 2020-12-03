@@ -17,6 +17,11 @@ const updateReport = catchAsync(async (req, res) => {
 
 const searchReport = catchAsync(async (req, res) => {
   const report = await dbService.searchReport(req.params.reportId);
+  if (report == null){
+    res.status(404).send()
+    return
+  }
+
   let status;
   if (parseInt(report.status) ===  0){
     status = 206
