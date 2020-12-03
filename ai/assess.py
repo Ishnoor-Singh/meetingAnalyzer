@@ -100,8 +100,8 @@ def db_update(item):
 	"""updates an item as completed on the db. 
 		:param item: (tuple) formed by (video_name, database_id).
 	"""
-	logging.info(f'Updating {item} on DB...')
-	preds.update_one({
+	# logging.info(f'Updating {item} on DB...')
+	reps.update_one({
 				'_id': item[1]
 				},
 				{
@@ -109,7 +109,7 @@ def db_update(item):
 					'status': 1
 				}
 			}, upsert=False)
-	logging.info(f'Successfully updated {item} on DB')
+	# logging.info(f'Successfully updated {item} on DB')
 
 
 def loop(db_collection, status_code, wait_time):
@@ -121,11 +121,11 @@ def loop(db_collection, status_code, wait_time):
 	filtered = \
 		[(p['video_name'], p['_id'])
 			for p in db_collection.find() if p['status'] == status_code]
-	logging.debug(f'Received {filtered}')
+	# logging.debug(f'Received {filtered}')
 	for to_classify in filtered:
 		parse_video(to_classify)
 		db_update(item)
-	logging.debug(f'Completed {filtered}')
+	# logging.debug(f'Completed {filtered}')
 	time.sleep(wait_time)
 
 if __name__ == "__main__":
@@ -135,6 +135,4 @@ if __name__ == "__main__":
 		except KeyboardInterrupt: 
 			break
 		camera.release()
-		cv2.destroyAllWindows()
-
-
+		cv2.destroyAllWindows()\
