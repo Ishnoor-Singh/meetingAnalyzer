@@ -63,6 +63,8 @@ def read_frames(video_path):
 		curr_p = np.array(classify_img(image))
 		ps_count.append(curr_p)
 		success, image = vidcap.read()
+	ps_count = ps_count[0::60]
+
 	return ps_count
 
 
@@ -74,9 +76,9 @@ def compute_score(scores):
 	curr_score = 50
 	for classification in scores: 
 		if classification == 1 or classification == 3: 
-			curr_score += 0.6
+			curr_score += 0.08
 		if classification == 2 or classification == 4: 
-			curr_score -= 0.2
+			curr_score -= 0.03
 	return curr_score	
 
 
@@ -84,7 +86,7 @@ def parse_video(obj):
 	"""parses a video by downloading from s3 and computing 
 		its score based on analyzing its frames. 
 		:param obj: (tuple) formed by (video_name, database_id)
-		:return: (float) The score associated with the parsed video. 
+		:return: (array, array, float)  The timestamps, data, and final score associated with the parsed video. 
 	"""
 	video_name, _id = obj
 	score = 0
@@ -93,7 +95,9 @@ def parse_video(obj):
 		s3.Bucket(BUCKET_NAME).download_file(
 			video_name, vp)
 		scores = read_frames(vp)
-		return compute_score(scores)
+		framestamps = [i for i in range(0, len(scores))]
+
+		return framestamps, scores, compute_score(scores)
 
 
 def db_update(item):
@@ -135,4 +139,4 @@ if __name__ == "__main__":
 		except KeyboardInterrupt: 
 			break
 		camera.release()
-		cv2.destroyAllWindows()\
+		cv2.destroyAllWindows()

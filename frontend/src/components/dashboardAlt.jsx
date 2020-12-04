@@ -23,14 +23,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * The Dashboard component is what the user sees after uploading a video to the Upload
+ * component. It contains an instance of the LineChart and DoughnutChart components.
+ */
 export default function Dashboard(props) {
   const classes = useStyles();
 
   const [dataset, setDataset] = useState();
   const [msg, setMsg] = useState("");
 
+  /**
+   * To get the data from the backend API, the Dashboard component does a GET request
+   * to the endpoint /v1/reports/searchReport/:id where the id is passed from the
+   * Upload component using props. After receiving a response from the API, the data
+   * is sent for visualization to the LineChart and DoughnutChart components using
+   * props in the form of a json file.
+   */
   useEffect(() => {
-    let id = props.match.params.id;
+    let id = "";
+    if(props.match) {
+      id = props.match.params.id;
+    }
+
     const url = "http://localhost:5000/v1/reports/searchReport";
 
     const getData = async () => {
@@ -50,7 +65,7 @@ export default function Dashboard(props) {
   }, []);
 
   return (
-    <div className={classes.content}>
+    <div data-testid="dashboard" className={classes.content}>
       {dataset ? (
         <>
           <Sidebar></Sidebar>

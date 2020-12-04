@@ -1,6 +1,7 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { makeStyles, Paper, Typography } from "@material-ui/core";
+import SampleData from "./sample.json";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -10,14 +11,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * The DoughnutChart component visualizes the overall engagement score of meeting
+ * participants. It shows a Doughnut component imported from react-chartjs-2.
+ * 
+ * It uses the json file passed from the Dashboard component using props. The json
+ * file is parsed and the data field is used to calculate the overall engagement score
+ * by averaging the data points and assigning a tier of strong, decent, mediocre, low,
+ * little engagement depending on the overall engagement score.
+ */
 export default function DoughnutChart(props) {
   const classes = useStyles();
 
-  var total = 0;
-  for (var i = 0; i < props.dataset.data.length; i++) {
-    total += props.dataset.data[i];
+  let dataset = SampleData;
+  if(props.dataset) {
+    dataset = props.dataset;
   }
-  var engagementScore = Math.round(total / props.dataset.data.length);
+
+  var total = 0;
+  for (var i = 0; i < dataset.data.length; i++) {
+    total += dataset.data[i];
+  }
+  var engagementScore = Math.round(total / dataset.data.length);
   var unengagedScore = 100 - engagementScore;
 
   var engagementMessage = "";
@@ -51,7 +66,7 @@ export default function DoughnutChart(props) {
   };
 
   return (
-    <Paper elevation={0}>
+    <Paper data-testid="doughnut" elevation={0}>
       <Typography className={classes.title} variant="h5">
         Overall Engagement
       </Typography>
