@@ -13,6 +13,7 @@ const router = express.Router();
  * path:
  * /v1/reports/{searchReport}:
  *   get:
+ *     summary: Search for the report based off the meeting id
  *     required: 
  *        - reportId
  *     produces:
