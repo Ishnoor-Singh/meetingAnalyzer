@@ -63,6 +63,8 @@ def read_frames(video_path):
 		curr_p = np.array(classify_img(image))
 		ps_count.append(curr_p)
 		success, image = vidcap.read()
+	ps_count = ps_count[0::60]
+
 	return ps_count
 
 
@@ -76,7 +78,7 @@ def compute_score(scores):
 		if classification == 1 or classification == 3: 
 			curr_score += 0.08
 		if classification == 2 or classification == 4: 
-			curr_score -= 0.05
+			curr_score -= 0.03
 	return curr_score	
 
 
@@ -137,4 +139,4 @@ if __name__ == "__main__":
 		except KeyboardInterrupt: 
 			break
 		camera.release()
-		cv2.destroyAllWindows()\
+		cv2.destroyAllWindows()
