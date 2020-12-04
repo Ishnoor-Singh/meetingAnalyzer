@@ -30,7 +30,11 @@ export default function Dashboard(props) {
   const [msg, setMsg] = useState("");
 
   useEffect(() => {
-    let id = props.match.params.id;
+    let id = "";
+    if(props.match) {
+      id = props.match.params.id;
+    }
+
     const url = "http://localhost:5000/v1/reports/searchReport";
 
     const getData = async () => {
@@ -50,7 +54,7 @@ export default function Dashboard(props) {
   }, []);
 
   return (
-    <div className={classes.content}>
+    <div data-testid="dashboard" className={classes.content}>
       {dataset ? (
         <>
           <Sidebar></Sidebar>

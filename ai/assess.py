@@ -1,17 +1,18 @@
+import os
 import time
 import numpy as np
 import cv2
 import tensorflow as tf
 import boto3
 import logging
-import os 
 import pymongo
+
 # s3 setup
 BUCKET_NAME = "elasticbeanstalk-us-west-1-516879159697"
 session = boto3.Session(
 			region_name='us-west-1',
-			aws_access_key_id=os.environ['AWS_ACCESS_KEY'],
-			aws_secret_access_key=os.environ['AWS_SECRET_KEY'])
+			aws_access_key_id="AKIAI3AKGQZ25MWDPIIQ",
+			aws_secret_access_key="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")
 s3 = boto3.resource('s3')
 
 # mongodb setup
@@ -101,8 +102,8 @@ def db_update(item):
 	"""updates an item as completed on the db. 
 		:param item: (tuple) formed by (video_name, database_id).
 	"""
-	logging.info(f'Updating {item} on DB...')
-	preds.update_one({
+	# logging.info(f'Updating {item} on DB...')
+	reps.update_one({
 				'_id': item[1]
 				},
 				{
@@ -110,7 +111,7 @@ def db_update(item):
 					'status': 1
 				}
 			}, upsert=False)
-	logging.info(f'Successfully updated {item} on DB')
+	# logging.info(f'Successfully updated {item} on DB')
 
 
 def loop(db_collection, status_code, wait_time):
@@ -122,11 +123,11 @@ def loop(db_collection, status_code, wait_time):
 	filtered = \
 		[(p['video_name'], p['_id'])
 			for p in db_collection.find() if p['status'] == status_code]
-	logging.debug(f'Received {filtered}')
+	# logging.debug(f'Received {filtered}')
 	for to_classify in filtered:
 		parse_video(to_classify)
-		db_update(item)
-	logging.debug(f'Completed {filtered}')
+		db_update(to_classify)
+	# logging.debug(f'Completed {filtered}')
 	time.sleep(wait_time)
 
 if __name__ == "__main__":
@@ -136,6 +137,4 @@ if __name__ == "__main__":
 		except KeyboardInterrupt: 
 			break
 		camera.release()
-		cv2.destroyAllWindows()
-
-
+		cv2.destroyAllWindows()\

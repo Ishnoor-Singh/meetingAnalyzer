@@ -2,9 +2,8 @@ const fs = require('fs');
 const AWS = require('aws-sdk');
 // require('dotenv').config()
 const BUCKET_NAME = "elasticbeanstalk-us-west-1-516879159697";
-const IAM_USER_KEY = "AKIAI3AKGQZ25MWDPIIQ";
-const IAM_USER_SECRET = "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";
-
+const IAM_USER_KEY = "AKIAJ4D5IWBM4DQRMMNQ";
+const IAM_USER_SECRET = "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"
 const s3bucket = new AWS.S3({
   accessKeyId: IAM_USER_KEY,
   secretAccessKey: IAM_USER_SECRET
@@ -34,8 +33,8 @@ function uploadToS3(fileName){
   });
 }
 
-function processFile(myFile){
-  myFile.mv(`public/${myFile.name}`, function (err) {
+async function processFile(myFile){
+  await myFile.mv(`public/${myFile.name}`, function (err) {
     if (err) {
         console.log(err)
         return "Error occured"
