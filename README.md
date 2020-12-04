@@ -4,7 +4,14 @@ We tell you how successful your meetings are.
 ## The project directory is divided into three main directory: ai, backend, and frontend
 
 ## ai
-The ai directory contains all of the files relating to the machine learning
+The ML pipeline is an asynchronous sensor that constantly checks on our db and, should there be unreviewed videos, it classifies them and makes sure to update their status on the dataset. 
+Below are the main API methods. The following documentation was created using Sphinx. 
+Sphinx is a python program to generate documentations for your classes and methods using just a few commands. 
+
+- ```assess.py``` contains the main methods for our ml infrastructure to function
+- ```example.py``` contains a brief example of how to use our API
+- expression.model is the pretrained keras model we use for sentiment classification
+- short.mp4 contains an example video that the example code uses to return an example classification 
 
 ## backend
 The backend directory contains all of the files relating to the backend
