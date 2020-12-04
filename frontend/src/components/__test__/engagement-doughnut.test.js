@@ -1,12 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import DoughnutChart from "./../engagement-line";
-import { render, cleanup } from "@testing-library/react";
-import SampleData from "./../sample.json";
+import DoughnutChart from './../engagement-doughnut';
+import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import React from 'react';
+import { ExpansionPanelActions } from '@material-ui/core';
 
-afterEach(cleanup);
+describe.only('Components / Upload', () => {
+    let ctx;
 
-test("renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<DoughnutChart dataset={SampleData}></DoughnutChart>, div);
+    beforeEach(() => {
+        ctx = render(<DoughnutChart/>)
+    });
+    
+    it('Should render the component', () => {
+        expect(ctx.getByTestId('doughnut')).not.toBeNull()
+    });
 });
