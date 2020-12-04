@@ -15,7 +15,7 @@ Sphinx is a python program to generate documentations for your classes and metho
 - ```short.mp4``` contains an example video that the example code uses to return an example classification 
 
 ## backend
-The backend directory contains all of the files relating to the backend
+The backend was implemented through the use of Express to handle our logic for the endpoints and Mongoose which handles recording meeting reports into a database. The backend directory contains all of the files relating to the backend and also includes information regarding our automatically generated documentation using Sphinx.
 
 ## frontend
 The frontend directory contains all of the files relating to the frontend of the project which is written in React.
