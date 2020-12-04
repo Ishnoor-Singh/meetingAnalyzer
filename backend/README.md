@@ -30,7 +30,7 @@ List of available routes:
 `GET /v1/routes/searchReport:reportId` - search for the report with the reportId
 
 **S3 routes**:\
-`POST /v1/users` - create a user\
+`POST /v1/saveFile` - saves file and creates a new blank report
 
 ## Error Handling
 
