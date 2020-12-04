@@ -4,7 +4,7 @@ import React from 'react';
 import SampleData from "./../sample.json";
 import { ExpansionPanelActions } from '@material-ui/core';
 
-describe('Components / Upload', () => {
+describe('Components / Dashboard', () => {
     let ctx;
 
     beforeEach(() => {

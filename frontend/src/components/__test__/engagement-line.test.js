@@ -3,7 +3,7 @@ import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import React from 'react';
 import { ExpansionPanelActions } from '@material-ui/core';
 
-describe.only('Components / Upload', () => {
+describe('Components / LineChart', () => {
     let ctx;
 
     beforeEach(() => {
