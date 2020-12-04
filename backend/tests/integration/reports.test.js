@@ -39,21 +39,6 @@ describe('Test getReport Endpoint', () => {
     })
   })
 
-  describe('Test functiosn', () => {
-    test('updating a report', async () => {
-      await dbService.updateReport( '33cb6b9b4f4ddef1ad47f940', {
-        labels:['5', '10', '15'], 
-        data:[5,10,15], 
-        status: "1"})
-
-      var report = await Report.findById({_id: new ObjectID("33cb6b9b4f4ddef1ad47f940")}).lean()
-      expect(report.data).toEqual([5,10,15])
-      expect(report.labels).toEqual(["5","10","15"])
-      expect(report.status).toEqual("1")
-
-    })
-  })
-
   test('return status 206 since report exists and status 0', async () => {
     await request(app)
       .get('/v1/reports/searchReport/33cb6b9b4f4ddef1ad47f940')
@@ -62,7 +47,7 @@ describe('Test getReport Endpoint', () => {
 
   test('return status 200 since report exists and status 1', async () => {
     await request(app)
-      .get('/v1/reports/searchReport/33cb6b9b4f4ddef1ad47f941')
+      .get('/v1/reports/searchReport/99cb6b9b4f4ddef1ad47f941')
     expect(200)
   })
 
