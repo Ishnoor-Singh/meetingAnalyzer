@@ -11,6 +11,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * The LineChart component visualizes the engagement score of meeting participants
+ * over time. It shows a Line component imported from react-chartjs-2.
+ * 
+ * It uses the json file passed from the Dashboard component using props.
+ * The json file is parsed and the labels field is used as the timestamps of the
+ * chart and the data field is used as the data points.
+ */
 export default function LineChart(props) {
   const classes = useStyles();
 

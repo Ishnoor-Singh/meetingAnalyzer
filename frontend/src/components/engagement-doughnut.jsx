@@ -11,6 +11,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * The DoughnutChart component visualizes the overall engagement score of meeting
+ * participants. It shows a Doughnut component imported from react-chartjs-2.
+ * 
+ * It uses the json file passed from the Dashboard component using props. The json
+ * file is parsed and the data field is used to calculate the overall engagement score
+ * by averaging the data points and assigning a tier of strong, decent, mediocre, low,
+ * little engagement depending on the overall engagement score.
+ */
 export default function DoughnutChart(props) {
   const classes = useStyles();
 

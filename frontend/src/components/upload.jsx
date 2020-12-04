@@ -15,9 +15,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * The Upload component is the first page that the user sees when first visiting the website.
+ * It shows a DropzoneDialog component imported from material-ui-dropzone which is able to
+ * take exactly one video file.
+ */
 export default function Upload(props) {
   const classes = useStyles(props);
 
+  /**
+   * To send the video file to the backend API, the Upload component does a POST request
+   * to the endpoint /v1/s3/saveFile. For the purpose of the demo, we are running the
+   * API server locally and we’re using http://localhost:5000/ as the base URL.
+   */
   const handleSave = (files) => {
     if (files.length > 0) {
       console.log(files); // TODO: remove
