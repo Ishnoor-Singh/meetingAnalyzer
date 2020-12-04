@@ -24,6 +24,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// NOTE: This component is not used. What is used is DashboardAlt.jsx
+
 /**
  * The Dashboard component is what the user sees after uploading a video to the Upload
  * component. It contains an instance of the LineChart and DoughnutChart components.
