@@ -9,10 +9,9 @@ import "./upload.css";
 const base = "http://localhost:5000/";
 
 const useStyles = makeStyles((theme) => ({
-  upload: {
-    position: "relative",
-    top: 624,
-    width: 184,
+  footnote: {
+    position: "fixed",
+    bottom: 8,
   },
 }));
 
@@ -51,13 +50,15 @@ export default function Upload(props) {
         <DropzoneArea
           filesLimit={1}
           maxFileSize={500000000000} // 50 MB
-          // acceptedFiles={["video/*"]}
+          acceptedFiles={["video/*"]}
           showPreviews={true}
+          showPreviewsInDropzone={false}
           onChange={(files) => handleSave(files)}
         />
       </div>
-      <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-      <h5>By: Andrew Battat, Francesco Colonnese, Ashkan Faghihi, Dominic Loftus, Juan Carlo Magat, and Ishnoor Singh</h5>
+      <h5 className={classes.footnote}>
+        By: Andrew Battat, Francesco Colonnese, Ashkan Faghihi, Dominic Loftus, Juan Carlo Magat, and Ishnoor Singh
+      </h5>
     </div>
   );
 }

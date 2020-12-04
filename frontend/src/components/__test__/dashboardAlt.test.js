@@ -1,14 +1,13 @@
 import Dashboard from './../dashboardAlt';
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import React from 'react';
-import SampleData from "./../sample.json";
 import { ExpansionPanelActions } from '@material-ui/core';
 
 describe('Components / Dashboard', () => {
     let ctx;
 
     beforeEach(() => {
-        ctx = render(<Dashboard dataset={SampleData}/>)
+        ctx = render(<Dashboard/>)
     });
 
     it('Should render the component', () => {

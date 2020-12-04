@@ -13,6 +13,10 @@ describe('Components / Upload', () => {
     it('Should render the component', () => {
         expect(ctx.getByTestId('upload')).not.toBeNull()
     });
+
+    it('Should not POST to API with no video uploaded', () =>  {
+        // Call handleSave with [] as input
+    });
 });
 
 
