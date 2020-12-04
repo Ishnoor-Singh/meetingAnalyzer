@@ -12,7 +12,7 @@ const router = express.Router();
  *  @swagger
  *
  * path:
- * /v1/s3/saveFile:
+ * /v1/s3/saveFile/:
  *   post:
  *      summary: Add a new file to be analyzed
  *      consumes:

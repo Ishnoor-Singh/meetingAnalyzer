@@ -11,7 +11,7 @@ const router = express.Router();
  *  @swagger
  *
  * path:
- * /v1/reports/{searchReport}:
+ * /v1/reports/searchReport/{reportId}:
  *   get:
  *     summary: Search for the report based off the meeting id
  *     required: 
